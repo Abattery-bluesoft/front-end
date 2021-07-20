@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+@import'./assets/styles/colors';
+.main-panel{
+    position: relative;
+    top: 50%;
+    width: 100%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    height: 90vh;
+    background-color: $darkblue;
+    margin: 5vh 0;
+    font-size: .8rem;
+}
+.white-panel{
+    background-color: rgba(255,255, 255, 1);
+    height:100vh;
+    position:absolute;
+    top:-50px;
+    width:60vw;
+    left:15vw;
+    transition:.3s ease-in-out;
+    z-index:0;
+    box-shadow: 0 0 15px 9px #00000096;
+    padding-top: 20px   ;
+}
+.pagination {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: .25rem;
+}
+.page-link:hover {
+  z-index: 2;
+  color: #0056b3;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+.page-link {
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  &:not(.active){
+    color: $darkblue !important;
+  }
+}
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff !important;
+  background-color: $darkblue !important;
+  border-color: $darkblue !important;
+}
+.sr-only {
+  display: none;
+}
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: auto;
+  background-color: #fff;
+  border-color: #dee2e6;
+}

@@ -1,0 +1,61 @@
+@import'../../../assets/styles/colors';
+body {
+  margin-top: 20px;
+  background: #f8f8f8;
+}
+
+.white-panel {
+  max-height: 100vh;
+  overflow-y: scroll;
+  width: 80vw;
+  left: 5vw;
+  padding: 20px 0;
+}
+label{
+  color: $darkblue;
+  border-bottom: 2px solid $darkblue;
+  font-weight: 200;
+  width: 100%;
+}
+.form-control {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.form-group {
+  margin-top: 20px;
+}
+.title {
+  text-align: center;
+  color: $darkblue;
+  width: 100%;
+}
+.button {
+  max-width: 150px;
+  width: 100%;
+  color: #f9f9f9;
+  border: none;
+  padding: 10px;
+  background: #2d418d;
+  color: #ffffff;
+  border-color: #ffffff;
+  border-radius: 2px;
+  float:right;
+  cursor:pointer;
+}
+.file-input {
+  display: none;
+}
+.upload-btn{
+    width: 50px;
+    height: 50px;
+    outline: 0 !important;
+    cursor: pointer;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, $darkblue, $darkblue);
+    box-shadow: 20px 20px 60px #cacaca, -20px -20px 60px #ffffff;
+    margin: 10px;
+}

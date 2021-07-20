@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-primary-title">{{employee?.firstName}} {{employee?.lastName}}</h4>
+  <!-- <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+  </button> -->
+</div>
+<div class="modal-body centered">
+  <div class="form-group">
+    <a class="btn" [href]="employee?.cv" ><i class="fa fa-download" aria-hidden="true"></i>
+      Télécharger le CV</a>
+   <div><i class="bi bi-file-earmark-word"></i></div>
+   <ngx-doc-viewer  *ngIf="employee && employee.cv"
+   url="https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.docx" 
+   viewer="google"  
+   disableContent= "none"
+   style="width:100%;height:93vh;">
+   </ngx-doc-viewer>
+    
+  </div>
+<!-- <form>
+      <div class="row mb-3">
+        <div class="form-group col-md-6 d-flex justify-content-between">
+          <label class="  " >Numéro de téléphone:</label>
+          <span  class=" ml-auto" >{{employee?.phone}}</span>
+         </div>
+        <div class="form-group col-md-6 d-flex justify-content-between">
+          <label  class="  " for="inputZip">Code postal</label>
+          <span>{{employee?.zipCode }}</span>
+       </div>
+      </div>
+      <div class="row mb-3">
+     <div class="form-group  col-md-6 d-flex justify-content-between">
+        <label  class="  " for="inputDate">Date de disponibilité</label>
+        <span>{{ employee?.availabilityDate | date: 'dd/MM/yyyy' }}</span>
+      </div>
+      <div class="form-group  col-md-6 d-flex justify-content-between">
+        <label  class=" " for="inputDate">Date de départ en mission</label>
+        <span>{{ employee?.startDate | date: 'dd/MM/yyyy' }}</span>
+      </div>
+      </div>
+      <div class="row mb-3">
+        <div class="form-group col-md-6 d-flex justify-content-between">
+          <label  class="  " for="inputPole">Pole</label>
+          <span>{{employee?.pole}}</span>
+        </div>
+        <div class="form-group col-md-6 d-flex justify-content-between">
+          <label  class="  "for="inputField">Domaine</label>
+          <span>{{employee?.field}}</span>
+        </div>
+      </div>
+      <div class="form-group  col-md-6 d-flex justify-content-between">
+        <label  class="  "for="inputPhone">Salaire</label>
+        <span>{{employee?.salary}}</span>
+      </div>
+      <div class="form-group col-md-6 d-flex justify-content-between ">
+        <label class="  " for="inputComments">commentaires</label>
+        <div>
+          {{employee?.comments}}
+        </div>
+      </div>
+      <div class="form-group">
+        <a class="btn" [href]="employee?.cv" ><i class="fa fa-download" aria-hidden="true"></i>
+          Télécharger le CV</a>
+       <div><i class="bi bi-file-earmark-word"></i></div>
+       <ngx-doc-viewer  *ngIf="employee && employee.cv"
+       url="https://file-examples-com.github.io/uploads/2017/02/file-sample_100kB.docx" 
+       viewer="google"  
+       disableContent= "none"
+       style="width:100%;height:93vh;">
+       </ngx-doc-viewer>
+        
+      </div>
+</form> -->
+    </div>

@@ -1,0 +1,122 @@
+<div class="modal-header">
+  <h4 class="modal-title title" id="modal-primary-title">
+    <span>{{employee?.firstName}} {{employee?.lastName}}</span>
+    <span>Ajouter un consultant</span>
+  </h4>
+
+</div>
+<div class="modal-body centered">
+    <div class="container col-11  pb-3">
+  <form [formGroup]="addForm" >
+      <div class="row mb-3">
+        <div class="form-group col-md-6">
+          <label for="lastName">Nom</label>
+          <input [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" type="text" class="form-control" formControlName="lastName" formControlName="lastName"  >
+          <div *ngIf=" f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Champ requis</div>
+        </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="firstName">Prénom</label>
+          <input [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" type="text" class="form-control" formControlName="firstName" formControlName="firstName">
+          <div *ngIf=" f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">Champ requis</div>
+        </div>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="inputPhone">Numéro de téléphone</label>
+        <input  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"type="number" class="form-control" formControlName="phone" placeholder="">
+        <div *ngIf=" f.phone.errors" class="invalid-feedback">
+          <div *ngIf="f.phone.errors.required">Champ requis</div>
+          <div *ngIf="f.phone.errors.phone">le numéro n'est pas valide</div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="form-group col-md-6">
+          <label for="inputCity">Ville</label>
+          <input [ngClass]="{ 'is-invalid': submitted && f.city.errors }" type="text" class="form-control" formControlName="city">
+          <div *ngIf=" f.city.errors" class="invalid-feedback">
+            <div *ngIf="f.city.errors.required">Champ requis</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputZip">Code postal</label>
+          <input type="text" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" class="form-control" formControlName="zipCode">
+          <div *ngIf=" f.zipCode.errors" class="invalid-feedback">
+            <div *ngIf="f.zipCode.errors.required">Champ requis</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="fonction">Fonction</label>
+        <input [ngClass]="{ 'is-invalid': submitted && f.fonction.errors }" type="text" class="form-control" formControlName="fonction" placeholder="">
+        <div *ngIf=" f.fonction.errors" class="invalid-feedback">
+          <div *ngIf="f.fonction.errors.required">Champ requis</div>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="date">Date de disponibilité</label>
+        <input [ngClass]="{ 'is-invalid': submitted && f.availabilityDate.errors }" type="date" class="form-control" formControlName="availabilityDate" placeholder="">
+        <div *ngIf=" f.availabilityDate.errors" class="invalid-feedback">
+          <div *ngIf="f.availabilityDate.errors.required">Champ requis</div>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="date">Date de départ en mission</label>
+        <input [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" type="date" class="form-control" formControlName="startDate" placeholder="">
+        <div *ngIf=" f.startDate.errors" class="invalid-feedback">
+          <div *ngIf="f.startDate.errors.required">Champ requis</div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="form-group col-md-6">
+          <label for="inputPole">Pole</label>
+          <input  [ngClass]="{ 'is-invalid': submitted && f.pole.errors }" type="text" class="form-control" formControlName="pole">
+          <div *ngIf=" f.pole.errors" class="invalid-feedback">
+            <div *ngIf="f.pole.errors.required">Champ requis</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputField">Domaine</label>
+          <input [ngClass]="{ 'is-invalid': submitted && f.field.errors }" type="text" class="form-control" formControlName="field">
+          <div *ngIf=" f.field.errors" class="invalid-feedback">
+            <div *ngIf="f.field.errors.required">Champ requis</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="inputPhone">Salaire</label>
+        <input [ngClass]="{ 'is-invalid': submitted && f.salary.errors }" type="number" class="form-control" formControlName="salary" placeholder="">
+        <div *ngIf=" f.salary.errors" class="invalid-feedback">
+          <div *ngIf="f.salary.errors.required">Champ requis</div>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="inputComments">commentaires</label>
+        <textarea  class="form-control" formControlName="comments" rows="2"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="file">CV</label>
+        <div class="form-group col-md-12 mt-0">
+          <input type="file" class="file-input" formControlName="cv"
+       (change)="onFileSelected($event)" #fileUpload>
+
+        <div class="file-upload">
+          {{fileName|| "aucun cv attaché"}}
+
+            <button  class="upload-btn"
+              (click)="fileUpload.click()">
+              <i class="fa fa-paperclip" aria-hidden="true"></i>
+            </button>
+        </div>
+        </div>
+
+      </div>
+      <button (click)="submit()" *ngIf="isAddMode" class="button mt-2 mb-2" >Ajouter</button>
+      <button (click)="submit()" *ngIf="!isAddMode" (click)="modal.close()"  class="button mt-2 mb-2" >Modifier</button>
+
+  </form>
+    </div>
+  </div>

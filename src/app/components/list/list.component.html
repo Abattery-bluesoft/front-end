@@ -1,0 +1,183 @@
+<div class="main-panel">
+  <div class="white-panel">
+    <app-header></app-header>
+    <div class="row content">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <div class="d-flex flex-row-reverse">
+            <button
+              (click)="isCollapsed = !isCollapsed"
+              class="m-2 btn btn-outline-info btn-circle btn-circle border-blue"
+            >
+              <i class="fa fa-sliders"></i>
+            </button>
+            <button
+              (click)="add()"
+              class="m-2 btn btn-outline-info btn-circle btn-circle border-blue"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+          <div class="row">
+            <div class="collapse multi-collapse" [ngbCollapse]="isCollapsed">
+              <div class="card card-body">
+                <form class="form-inline row align-items-center">
+                  <div class="col col-md-4">
+                    <input
+                      class="form-control ml-2"
+                      type="text"
+                      placeholder="search"
+                      name="searchTerm"
+                      [(ngModel)]="employeeService.searchTerm"
+                    />
+                  </div>
+                  <div class="col col-md-8">
+                    <div class="row">
+                      <div class="chiller_cb col col-md-3">
+                        <input id="myCheckbox" type="checkbox" checked>
+                        <label for="myCheckbox">Intercontrat </label>
+                        <span></span>
+                      </div>
+                      <div class="chiller_cb col col-md-3">
+                        <input id="myCheckbox2" type="checkbox">
+                        <label for="myCheckbox2">En mission</label>
+                        <span></span>
+                      </div>
+                    </div>
+                    </div>
+                  <div class="col col-md-4"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <table class="table no-wrap user-table mb-0" *ngIf="employees$">
+            <thead>
+              <tr>
+                <th
+                  scope="col"
+                  sortable="firstName"
+                  (sort)="onSort($event)"
+                  class="border-0 text-uppercase font-small"
+                >
+                  Nom et prénom
+                </th>
+                <th scope="col" class="border-0 text-uppercase font-small">
+                  Code postal
+                </th>
+                <th scope="col" class="border-0 text-uppercase font-small">
+                  N° de téléphone
+                </th>
+                <th
+                  scope="col"
+                  sortable="fonction"
+                  (sort)="onSort($event)"
+                  class="border-0 text-uppercase font-small"
+                >
+                  Pole/Domaine
+                </th>
+                <th
+                  scope="col"
+                  sortable="availabilityDate"
+                  (sort)="onSort($event)"
+                  class="border-0 text-uppercase font-small"
+                >
+                  Disponibilité
+                </th>
+                <th
+                  scope="col"
+                  sortable="startDate"
+                  (sort)="onSort($event)"
+                  class="border-0 text-uppercase font-small"
+                >
+                  Début de mission
+                </th>
+                <th
+                  scope="col"
+                  sortable="salary"
+                  (sort)="onSort($event)"
+                  class="border-0 text-uppercase font-small"
+                >
+                  Salaire
+                </th>
+                <th scope="col" class="border-0 text-uppercase font-small"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employees$ | async; trackBy: trackId">
+                <td [class]="employee.status">
+                  <h6 class="name mb-0 text-capitalize">
+                    {{ employee.firstName }} {{ employee.lastName }}
+                  </h6>
+                </td>
+                <td>
+                  <p>{{ employee.zipCode }}</p>
+                </td>
+                <td>
+                  <p>{{ employee.phone }}</p>
+                </td>
+                <td>
+                  <p class="font-weight-bold">
+                    {{ employee.fonction | uppercase }}
+                  </p>
+                  <span class="fst-italic"
+                    >{{ employee.pole }}/{{ employee.field }}</span
+                  >
+                </td>
+                <td>
+                  <span class="">{{
+                    employee.availabilityDate | date: "dd/MM/yyyy"
+                  }}</span>
+                </td>
+                <td>
+                  <span class="">{{
+                    employee.startDate | date: "dd/MM/yyyy"
+                  }}</span>
+                </td>
+                <td>
+                  <span class="">{{
+                    employee.salary | currency: "EUR":true
+                  }}</span
+                  ><br />
+                </td>
+
+                <td>
+                  <a
+                    type="button"
+                    [href]="employee?.cv"
+                    class="btn btn-outline-info btn-circle btn-lg btn-circle"
+                    ><i class="fa fa-download" aria-hidden="true"></i>
+                  </a>
+                  <button
+                    (click)="openModal(employee)"
+                    type="button"
+                    class="btn btn-outline-info btn-circle btn-lg btn-circle"
+                  >
+                    <i class="fa fa-eye"></i>
+                  </button>
+                  <!-- <button (click)="delete(employee._id)" type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button> -->
+                  <button
+                    (click)="edit(employee)"
+                    type="button"
+                    class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"
+                  >
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination
+              size="sm"
+              class="table-pagination"
+              [collectionSize]="(total$ | async)!"
+              [(page)]="employeeService.page"
+              [pageSize]="employeeService.pageSize"
+            >
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
