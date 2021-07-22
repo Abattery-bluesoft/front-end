@@ -2,9 +2,7 @@ import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee/employee.service';
 import {  ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { Employee } from 'src/app/models/employee/employee.model';
-import { from } from 'rxjs';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-add-profile',

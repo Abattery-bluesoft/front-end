@@ -11,14 +11,14 @@
       <div class="row mb-3">
         <div class="form-group col-md-6">
           <label for="lastName">Nom</label>
-          <input [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" type="text" class="form-control" formControlName="lastName" formControlName="lastName"  >
+          <input [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" type="text" class="form-control"  formControlName="lastName"  >
           <div *ngIf=" f.lastName.errors" class="invalid-feedback">
             <div *ngIf="f.lastName.errors.required">Champ requis</div>
         </div>
         </div>
         <div class="form-group col-md-6">
           <label for="firstName">Prénom</label>
-          <input [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" type="text" class="form-control" formControlName="firstName" formControlName="firstName">
+          <input [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" type="text" class="form-control"  formControlName="firstName">
           <div *ngIf=" f.firstName.errors" class="invalid-feedback">
             <div *ngIf="f.firstName.errors.required">Champ requis</div>
         </div>

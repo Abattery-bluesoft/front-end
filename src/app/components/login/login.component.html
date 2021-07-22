@@ -1,21 +1,39 @@
 <div class="main-panel">
-                  
-    <div class="white-panel">
-        <div class="logo"></div>    
-        <div class="login-show m-5">
-            <!-- <h2>LOGIN</h2> -->
-
-            <div class="input-group mb-3">
-                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control"  placeholder="Email">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                <input type="password" class="form-control" placeholder="Mot de passe">
-            </div>
-            
-            <input type="button" value="Se connecter">
-            <a href="">Mot de passe oublié</a>
+  <div class="white-panel">
+    <div class="logo"></div>
+    <div class="login-show m-5">
+      <!-- <h2>LOGIN</h2> -->
+      <form [formGroup]="loginForm" >
+        <div class="input-group mb-3">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input [ngClass]="{ 'is-invalid': !f.email?.valid }"
+            type="text"
+            class="form-control"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <div *ngIf="!f.email.valid" class="invalid-feedback">
+            <div *ngIf="f.email?.errors?.required">email requis</div>
+            <div *ngIf="f.email?.errors?.email">email invalid</div>
+            <div *ngIf="f.email?.errors?.emailDomain">l'email doit avoir le domain bluesoft-group.com </div>
+          </div>
         </div>
+        <div class="input-group mb-3">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+            type="password"
+            class="form-control"
+            placeholder="Mot de passe"
+            formControlName="password"
+          />
+          <div *ngIf="f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">mot de passe requis</div>
+          </div>
+        </div>
+
+        <input class="btn" [disabled]="loginForm.invalid" (click)="submit()" type="button" value="Se connecter" />
+        <a href="">Mot de passe oublié</a>
+      </form>
     </div>
+  </div>
 </div>
