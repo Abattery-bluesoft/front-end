@@ -24,7 +24,7 @@ export class AuthService {
   signUp(email: string, password: string) {
     return new Promise((resolve, reject) => {
       this.http
-        .post(`${this.api}/users/signup`, { email: email, password: password })
+        .post(`${this.api}users/signup`, { email: email, password: password })
         .subscribe((signUpData:any)=>{
           if(signUpData.status === 201){
             this.login(email,password)
@@ -54,7 +54,6 @@ export class AuthService {
       this.http
         .post(`${this.api}users/login`, { email: email, password: password })
         .subscribe((authData:any) => {
-          console.log(authData);
           this.token = authData.token;
           this.userId= authData.userId;
           this.isAuth$.next(true);

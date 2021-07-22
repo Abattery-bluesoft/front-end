@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HeaderComponent } from './components/header/header.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './components/login/login.component';
+import { AuthComponent } from './components/auth/auth.component';
 import { ListComponent } from './components/list/list.component';
 import { AddProfileComponent } from './components/add-profile/add-profile.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -16,7 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SortableDirective } from './directives/sortable.directive';
 import { CommonModule, DecimalPipe } from '@angular/common';
 @NgModule({
-    declarations:[AppComponent, HeaderComponent, DetailComponent, LoginComponent, ListComponent, AddProfileComponent, SignupComponent, SortableDirective],
+    declarations:[AppComponent, HeaderComponent, DetailComponent, AuthComponent, ListComponent, AddProfileComponent, SignupComponent, SortableDirective],
     imports:
     [
         BrowserModule ,

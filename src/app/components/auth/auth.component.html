@@ -2,8 +2,7 @@
   <div class="white-panel">
     <div class="logo"></div>
     <div class="login-show m-5">
-      <!-- <h2>LOGIN</h2> -->
-      <form [formGroup]="loginForm" >
+      <form [formGroup]="authForm" >
         <div class="input-group mb-3">
           <span class="input-group-addon"><i class="fa fa-user"></i></span>
           <input [ngClass]="{ 'is-invalid': f.email?.invalid && f.email?.touched }"
@@ -30,8 +29,21 @@
             <div *ngIf="f.password.errors?.required">mot de passe requis</div>
           </div>
         </div>
+        <div class="input-group mb-3" *ngIf="page === 'register'">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+          <input [ngClass]="{ 'is-invalid': f.confirmPassword?.invalid  && f.confirmPassword?.touched}"
+            type="password"
+            class="form-control"
+            placeholder="confirmation mot de passe"
+            formControlName="confirmPassword"
+          />
+          <div *ngIf="f.confirmPassword.invalid && f.confirmPassword?.touched" class="invalid-feedback">
+            <div *ngIf="f.confirmPassword.errors?.required">mot de passe requis</div>
+            <div *ngIf="f.confirmPassword.errors?.mustMatch">mot de passe non identique</div>
+          </div>
+        </div>
 
-        <input class="btn" [disabled]="loginForm.invalid" (click)="submit()" type="button" value="Se connecter" />
+        <input class="btn" [disabled]="authForm.invalid" (click)="submit()" type="button" [value]="submitBtn" />
         <a href="">Mot de passe oublié</a>
       </form>
     </div>

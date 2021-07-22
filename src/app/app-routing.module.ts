@@ -1,7 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { AuthComponent } from './components/auth/auth.component';
 import { ListComponent } from './components/list/list.component';
 import { AddProfileComponent } from './components/add-profile/add-profile.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -10,15 +10,15 @@ const routes: Routes = [
     
     {
       path: '',
-      component: LoginComponent,
+      component: AuthComponent,
     },
     {
         path: 'login',
-        component: LoginComponent,
+        component: AuthComponent,
       },
       {
         path: 'signup',
-        component: SignupComponent,
+        component: AuthComponent,
       },
       {
         path: 'list',
