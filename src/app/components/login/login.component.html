@@ -6,13 +6,13 @@
       <form [formGroup]="loginForm" >
         <div class="input-group mb-3">
           <span class="input-group-addon"><i class="fa fa-user"></i></span>
-          <input [ngClass]="{ 'is-invalid': !f.email?.valid }"
+          <input [ngClass]="{ 'is-invalid': f.email?.invalid && f.email?.touched }"
             type="text"
             class="form-control"
             placeholder="Email"
             formControlName="email"
           />
-          <div *ngIf="!f.email.valid" class="invalid-feedback">
+          <div *ngIf="!f.email.valid && f.email?.touched " class="invalid-feedback">
             <div *ngIf="f.email?.errors?.required">email requis</div>
             <div *ngIf="f.email?.errors?.email">email invalid</div>
             <div *ngIf="f.email?.errors?.emailDomain">l'email doit avoir le domain bluesoft-group.com </div>
@@ -20,14 +20,14 @@
         </div>
         <div class="input-group mb-3">
           <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-          <input [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+          <input [ngClass]="{ 'is-invalid': f.password?.invalid  && f.password?.touched}"
             type="password"
             class="form-control"
             placeholder="Mot de passe"
             formControlName="password"
           />
-          <div *ngIf="f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">mot de passe requis</div>
+          <div *ngIf="f.password.invalid && f.password?.touched" class="invalid-feedback">
+            <div *ngIf="f.password.errors?.required">mot de passe requis</div>
           </div>
         </div>
 
