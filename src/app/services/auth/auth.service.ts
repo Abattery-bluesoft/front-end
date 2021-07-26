@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,9 @@ export class AuthService {
   token: string | null | undefined;
   userId: string | null | undefined;
   isAuth$ = new BehaviorSubject<boolean>(false);
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient , private router:Router) {
+    this.initAuth();
+  }
 
   /**
    *
@@ -57,6 +60,10 @@ export class AuthService {
           this.token = authData.token;
           this.userId= authData.userId;
           this.isAuth$.next(true);
+          // save authData in local
+          if(typeof localStorage !== "undefined"){
+            localStorage.setItem('auth' , JSON.stringify(authData));
+          }
           resolve(true);
         }),
         (err: any)=>{
@@ -70,9 +77,28 @@ export class AuthService {
    *
    * @memberof AuthService
    */
-  logOut() {
+  logout() {
     this.isAuth$.next(false);
     this.userId = null;
     this.token = null;
+    this.router.navigate(['/login']);
+    if(typeof localStorage !== "undefined"){
+      localStorage.setItem('auth','');
+    }
+  }
+
+  initAuth(){
+    if(typeof localStorage !== "undefined"){
+        let data = localStorage.getItem('auth');
+      if(data){
+       const user = JSON.parse(data);
+          if(user?.userId && user?.token){
+            this.userId = user.userId;
+            this.token = user.token;
+            this.isAuth$.next(true);
+            
+          }
+      }
+    }
   }
 }

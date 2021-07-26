@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
 
   constructor(private form: FormBuilder, private authService: AuthService , private router:Router) {
     this.page = this.router.url === '/signup' ? 'register':'login';
-    this.submitBtn = this.router.url === '/signup' ? 'register' : 'login';
+    this.submitBtn = this.router.url === '/signup' ? "s'inscrire" : 'se connecter';
   }
 
   ngOnInit(): void {

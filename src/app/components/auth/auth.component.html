@@ -42,9 +42,9 @@
             <div *ngIf="f.confirmPassword.errors?.mustMatch">mot de passe non identique</div>
           </div>
         </div>
-
+        <a *ngIf="page !== 'register'" routerLink="/signup">Pas encore de compte </a>
         <input class="btn" [disabled]="authForm.invalid" (click)="submit()" type="button" [value]="submitBtn" />
-        <a href="">Mot de passe oublié</a>
+        <!-- <a href="">Mot de passe oublié</a> -->
       </form>
     </div>
   </div>
